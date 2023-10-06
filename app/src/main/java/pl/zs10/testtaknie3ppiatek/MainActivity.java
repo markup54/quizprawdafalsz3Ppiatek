@@ -34,7 +34,19 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(sprawdzCzyDobrze(aktualne, true))
+                        if (sprawdzCzyDobrze(aktualne, true))
+                            Toast.makeText(MainActivity.this, "dobra odpowiedź", Toast.LENGTH_SHORT).show();
+                        else
+                            Toast.makeText(MainActivity.this, "zła odpowiedź", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+        buttonNie = findViewById(R.id.button2);
+        buttonNie.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (sprawdzCzyDobrze(aktualne, false))
                             Toast.makeText(MainActivity.this, "dobra odpowiedź", Toast.LENGTH_SHORT).show();
                         else
                             Toast.makeText(MainActivity.this, "zła odpowiedź", Toast.LENGTH_SHORT).show();
@@ -49,9 +61,30 @@ public class MainActivity extends AppCompatActivity {
                         aktualne++;
                         if (aktualne < pytanies.size())
                             wyswietlPytanie(aktualne);
+                        else {
+                            int p=podliczPunkty();
+                            zakonczTest(p);//nie widac tak nie podpowiedz kolejne, zamiast pytania jest liczba punktów
+                        }
                     }
                 }
         );
+        buttonPodpowiedz = findViewById(R.id.button3);
+    }
+    private void zakonczTest(int p){
+        buttonNie.setVisibility(View.INVISIBLE);
+        buttonTak.setVisibility(View.INVISIBLE);
+        buttonKolejne.setVisibility(View.INVISIBLE);
+        buttonPodpowiedz.setVisibility(View.INVISIBLE);
+        textView.setText("Test został zakończony \n Otrzymano "+p+" puntów");
+    }
+    private int podliczPunkty() {
+        int punkty = 0;
+        for (Pytanie p :
+                pytanies) {
+            if (p.isCzyOdpowiedzianoPoprawnie())
+                punkty++;
+        }
+        return punkty;
     }
 
     private boolean sprawdzCzyDobrze(int i, boolean odpowiedz) {
