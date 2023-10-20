@@ -7,7 +7,7 @@ public class RepozytoriumPytania {
         ArrayList<Pytanie> pytania = new ArrayList<>();
         pytania.add(new Pytanie("Góra na zdjęciu to Giewont",
                 true,
-                "Jest to słynna góra widoczna z Zakopanego",
+                "Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego Jest to słynna góra widoczna z Zakopanego",
                 R.drawable.giewont));
         pytania.add(new Pytanie("Czy na zdjęciu jest widoczny Mnich?",
                 true,

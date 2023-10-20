@@ -103,4 +103,7 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(pytanie.getTrescPytania());
         imageView.setImageResource(pytanie.getIdObrazu());
     }
+    //TODO obsluzyc przycisk podpowiedz nowa aktywnosc
+    //TODO odpornosc na obracanie
+    //TODO odporność na oszustów:)
 }
