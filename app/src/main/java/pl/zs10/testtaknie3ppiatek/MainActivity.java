@@ -1,7 +1,9 @@
 package pl.zs10.testtaknie3ppiatek;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,13 +24,26 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Pytanie> pytanies = RepozytoriumPytania.utworzPytania();
 
     @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("NRPYTANKA",aktualne);
+
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.textView);
         imageView = findViewById(R.id.imageView);
-
-        wyswietlPytanie(0);
+        if(savedInstanceState != null){
+            aktualne = savedInstanceState.getInt("NRPYTANKA");
+            wyswietlPytanie(aktualne);
+        }
+        else {
+            wyswietlPytanie(0);
+        }
         buttonTak = findViewById(R.id.button);
         buttonTak.setOnClickListener(
                 new View.OnClickListener() {
@@ -69,6 +84,16 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
         buttonPodpowiedz = findViewById(R.id.button3);
+        buttonPodpowiedz.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MainActivity.this, PodpowiedzActivity.class);
+                        intent.putExtra("NR",aktualne);
+                        startActivity(intent);
+                    }
+                }
+        );
     }
     private void zakonczTest(int p){
         buttonNie.setVisibility(View.INVISIBLE);
@@ -103,7 +128,8 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(pytanie.getTrescPytania());
         imageView.setImageResource(pytanie.getIdObrazu());
     }
-    //TODO obsluzyc przycisk podpowiedz nowa aktywnosc
+
     //TODO odpornosc na obracanie
     //TODO odporność na oszustów:)
+    //TODO jeżeli ktoś skorzysta z podpowiedzi to miej punktów
 }
